@@ -2,7 +2,7 @@
 
 Grazie all'impegno del Comune di Venezia, dell'allora Consiglio di Quartiere Carpenedo Bissuola e del lavoro tecnico del geom. p.a. Roberto Michieletto, è stato possibile tradurre, a metà degli anni novanta, la realizzazione di un orto botanico di quartiere progettato dall'Associazione "Gruppo Ricerca Culturale Locatelli" all'interno del Parco della Bissuola.
 
-![Orto Botanico Locatelli](/media/orto.jpg)
+![Orto Botanico Locatelli](orto.jpg)
 
 Soprattutto nel primo decennio ampia è stata la frequentazione da parte di scuole elementari e medie.
 
@@ -20,7 +20,7 @@ Nell'ambito del territorio comunale veneziano altre realtà sono presenti con sp
 ### Link consigliati:
 
 * [WWF - Dune degli Alberoni](https://www.wwf.it/oasi/veneto/dune_degli_alberoni/)
-* [LIPU Venezia - Oasi Ca' Roman](http://www.lipu.it/oasi-naturale-ca-roman "LIPU Ca' Roman")
-* [Percorso Didattico San Giuliano](https://www.mmoblfoto.it/media/percorso_didattico_alberi_bz4.pdf "Percorso didattico")
+* [LIPU Venezia - Oasi Ca' Roman](http://www.lipu.it/oasi-naturale-ca-roman)
+* [Percorso Didattico San Giuliano](https://www.mmoblfoto.it/media/percorso_didattico_alberi_bz4.pdf)
 * [Orto Botanico Didattico](https://www.nicolasaba.it/orto%20botanico.html)
 * [Uomo e Natura](https://www.filosofiatv.org/index.php?topic=ecofilosofia) (Associazione EcoFilosofica)

@@ -2,5 +2,5 @@
 index: 6
 title: Funghi
 link: funghi
-image: /media/cover_funghi.jpg
+image: /cover_funghi.jpg
 ---
