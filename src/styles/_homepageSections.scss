@@ -1,0 +1,201 @@
+.homepage-sections {
+    display: flex;
+    flex-direction: column;
+    // gap: 5vh;
+    // margin-top: 5vh;
+    width: 100%;
+    color: white;
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    .section-container {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        width: 100%;
+        padding: 5vh 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        &:nth-child(even) {
+            background: rgba(255, 255, 255, 0.05);
+        }
+    }
+    
+    .section-container:nth-child(1),
+    .section-container:nth-child(2) {
+        color: #045a94;
+        
+        a[href $= '.pdf']::before {
+            color: #146814;
+            background-color: rgba(134, 214, 81, 0.7);
+        }
+    }
+
+    .section-container:nth-child(odd) .homepage-section {
+        flex-direction: row-reverse;
+    }
+
+    .homepage-section {
+        // display: grid;
+        // grid-template-columns: 1fr 1fr;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        // max-width: 52rem;
+        // margin: 0 auto;
+        max-width: 72rem;
+        gap: 5vw;
+        // margin: 0 auto;
+        // background-color: #4d8ae015;
+        // padding: 0 2vw;
+    
+        .half {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            // max-width: 50%;
+
+            ul {
+                margin: 0 auto;
+            }
+        }
+    
+        .content {
+            text-align: left;
+            // justify-content: flex-start;
+
+            a {
+                text-decoration: underline;
+                text-decoration-style: dotted;
+                text-underline-offset: .3rem;
+            }
+
+            figure {
+                // max-width: 80vw;
+                // overflow: hidden;
+                margin: 1rem auto;
+
+                figcaption {
+                    text-align: center;
+                    margin: .5rem auto;
+                    text-transform: uppercase;
+                    font-size: 0.8rem;
+                    color: rgba(0, 0, 0, 0.7);
+                    font-weight: bold;
+                    letter-spacing: 0.1rem;
+                }
+
+                audio {
+                    border-radius: .2rem;
+                }
+            }
+
+            ul li {
+                padding: .2rem;
+            }
+
+            p {
+                width: 100%;
+                text-align: center;
+            }
+
+            h2 {
+                text-align: center;
+                font-size: 1.5rem;
+                padding: 0;
+                margin: 1rem 0;
+                letter-spacing: 0.05rem;
+                font-weight: 600;
+            
+                a {
+                    font-size: 1rem;
+                    background: rgba(84, 126, 204, 0.25);
+                    padding: 0.5rem 1rem;
+                    border-radius: 0.2rem;
+                    border-bottom: 0.2rem solid rgba(4, 90, 148, 0.7);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    transition: 100ms;
+                    text-decoration: none;
+                    // display: flex;
+                    // justify-content: center;
+                    // align-items: center;
+
+                    &:hover {
+                        background: rgba(84, 126, 204, 0.35);
+                        transition: 150ms;
+                    }
+                    &:active {
+                        background: rgba(84, 126, 204, 0.55);
+                        transition: 100ms;
+                    }
+
+                    &::after {
+                        position: relative;
+                        top: 3pt;
+                        content: "";
+                        display: inline-block;
+                        width: 0.4rem;
+                        height: 0.4rem;
+                        margin-bottom: 0.38rem;
+                        border-right: 0.2em solid #045a94;
+                        border-top: 0.2em solid #045a94;
+                        transform: rotate(45deg);
+                        margin-right: 0.4rem;
+                        margin-left: 0.5rem;
+                    }
+                }
+
+            }
+        }
+
+        img {
+            object-fit: contain;
+        }
+    }
+
+
+    // The symbol below (^=) is a "Substring matching attribute selector"
+    // https://www.w3.org/TR/selectors-3/#attribute-substrings
+    // att^=val   <-- href attribute begins with 'val'
+    // att$=val   <-- href attribute ends with 'val'
+    // att*=val   <-- href attribute contains 'val'
+    a[href $= '.pdf'] {
+        // font-weight: bold;
+        // color: brown;
+        text-decoration: underline;
+        text-decoration-style: dotted;
+        text-underline-offset: .3rem;
+        // border-bottom: 0.1rem solid #045a94;
+        // padding-bottom: .1rem;
+        
+        &::before {
+            content: "PDF";
+            margin: auto 0.5rem;
+            /* max-height: 1.6rem; */
+            height: 1.6rem;
+            padding: 0 0.4rem;
+            color: #88e04d;
+            background-color: rgba(134, 214, 81, 0.3);
+            font-size: 0.8rem;
+            vertical-align: center;
+            display: inline-flex;
+            justify-items: center;
+            align-items: center;
+            /* font-weight: bold; */
+            /* border: 1px solid rgba(134, 214, 81, 0.6); */
+            border-radius: 0.1rem;
+            text-decoration: none;
+        }
+    }
+
+}

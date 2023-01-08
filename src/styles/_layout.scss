@@ -1,0 +1,117 @@
+
+.layout {
+
+    min-height: 100vh;
+    line-height: 1.6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    background-color: #eee;
+    
+    color: inherit;
+
+    &.black {
+        color: black;
+    }
+
+    &.white {
+        color: white;
+    }
+    &.blue {
+        color: #045a94;
+    }
+    &.green {
+        color: #3c691e;
+    }
+
+    &.bg {
+        object-fit: cover;
+        background-size: cover;
+        background-position: center;
+        background-image: url("/media/sfondo.jpg");
+        background-repeat: no-repeat;
+
+        .header, .navbar {
+            background: transparent;
+        }
+    }
+
+    &.obl-foto {
+        
+        .main {
+            h1,h2 {
+                margin: 5vh 0;
+                color: white;
+                font-weight: normal;
+                font-size: 1.6rem;
+                letter-spacing: 0.06rem;
+            }
+        }
+
+        &::before {
+            content: "a";
+            width: 100%;
+            height: max(55vh, 25rem);
+            /* background: rgba(60, 105, 30, 0.8); */
+            background: linear-gradient(to bottom right, rgba(60, 105, 30, 0.8), rgba(60, 105, 30, 0.9));
+            box-shadow: 0 0 5vh 5vh rgba(0, 0, 0, 0.1);
+            position: absolute;
+            top: 0;
+            left: 0;
+            // z-index: 0;
+            transform: skew(0deg, -0.5deg);
+        }
+    }
+
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    position: relative;
+    z-index: 100;
+
+    &.home {
+        width: 100%;
+    }
+
+    &.obl-foto {
+        margin-bottom: 5vh;
+    }
+
+    &.about {
+        padding: 0 5vw;
+    }
+
+    &.about,
+    .about-content {
+        max-width: 42rem;
+        text-align: justify;
+        margin-bottom: 5vh;
+
+        h1,
+        h2 {
+            text-align: center;
+            line-height: 2.5rem;
+        }
+
+        p {
+            color: black;
+            margin: 2rem 0;
+
+            img {
+                max-width: 100%;
+            }
+        }
+
+        blockquote {
+            opacity: .6;
+            margin: 1rem 0;
+            padding-left: 1rem;
+            border-left: 3px solid #aaa;
+        }
+    }
+}

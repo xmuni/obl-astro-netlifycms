@@ -1,0 +1,53 @@
+---
+const { pathname } = Astro.url
+
+const navbarLinks = {
+    'Home': '/',
+    'Fotografie': '/obl-foto',
+    'Info': '/info',
+}
+---
+
+    
+<nav class='navbar'>
+    <ul>
+    {
+        Object.keys(navbarLinks).map(label => (
+            <li>
+                <a href={ navbarLinks[label] } class={ pathname.endsWith(navbarLinks[label]) ? 'active' : 'inactive' }>
+                    { label }
+                </a>
+            </li>
+        ))
+    }
+    </ul>
+</nav>
+
+<style lang="scss">
+
+    nav {
+        width: 100%;
+        margin: 2vh 0;
+    
+        ul {
+            display: flex;
+            // align-items: center;
+            justify-content: center;
+            text-transform: uppercase;
+            list-style: none;
+            padding: 0;
+            // width: 20rem;
+            // width: 100%;
+            gap: 3vw;
+            letter-spacing: 0.05em;
+    
+            li {
+                font-size: 1.1rem;
+
+                a.active {
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+</style>

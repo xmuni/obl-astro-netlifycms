@@ -1,0 +1,81 @@
+---
+import { SITE } from '../config';
+import Navbar from './Navbar.astro';
+---
+<header>
+	<article>
+		<h1><a href="/">{ SITE.title }</a></h1>
+		<div>La Natura maestra di vita</div>
+		<div>Osservare, conoscere, fotografare</div>
+		<Navbar/>
+	</article>
+</header>
+
+
+<style lang="scss">
+
+	header {
+		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+		display: flex;
+		flex-direction: column;
+		margin-top: 2vh;
+
+		h1 {
+			font-size: 2.5rem;
+			font-weight: normal;
+			margin: 0;
+			margin: 4vh 0;
+			max-width: 100%;
+			display: flex;
+			flex-grow: 1;
+		}
+	}
+
+	article {
+		// max-width: 24rem;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.header-subitem {
+		display: flex;
+		flex-grow: 0;
+		gap: 0.5em;
+		align-items: center;
+		justify-content: center;
+		color: var(--theme-text-lighter);
+		font-size: initial;
+		padding: 0.5rem;
+	}
+	.header-subitem:hover {
+		color: var(--theme-accent);
+	}
+	.header-subitem svg {
+		width: 1.5rem;
+		height: 1.5rem;
+	}
+
+	@media (max-width: 32em) {
+		.header-subitem {
+			display: none;
+		}
+	}
+
+
+	.logo {
+		transform: translateY(0.25rem);
+	}
+
+	svg {
+		width: 2.5rem;
+		height: 2.5rem;
+	}
+
+	h1 a {
+		text-decoration: none;
+		display: inline-flex;
+	}
+</style>

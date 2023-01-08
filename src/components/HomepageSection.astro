@@ -1,0 +1,191 @@
+---
+import type { MarkdownInstance } from "astro";
+
+export interface Props {
+    section: MarkdownInstance<Record<string, any>>,
+    reverse: boolean,
+    textColor?: string,
+}
+
+const { section, reverse=false, textColor='#045a94' } = Astro.props
+const { frontmatter, Content } = section
+
+// console.log({ reverse })
+---
+
+<article class={ reverse ? 'reverse' : ''} style={{ color: textColor }}>
+
+    <div class='half content'>
+        <Content/>
+    </div>
+
+    <div class='half'>
+        <img src={ frontmatter.image } alt="">
+    </div>
+
+</article>
+
+
+<style lang="scss">
+
+    article {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        // justify-content: center;
+        align-items: center;
+        // max-width: 52rem;
+        // margin: 0 auto;
+        gap: 10%;
+        // margin: 0 auto;
+        // background-color: #4d8ae015;
+        // padding: 0 2vw;
+        border: 1px dashed brown;
+
+        &.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .half {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            // max-width: 50%;
+            border: 1px dashed brown;
+            width: 45%;
+
+            ul {
+                margin: 0 auto;
+            }
+
+            img {
+                // max-width: 30rem;
+                object-fit: contain;
+                // width: 300px;
+                max-width: 100%;
+            }
+        }
+
+        .content {
+            text-align: left;
+            // justify-content: flex-start;
+
+            a {
+                text-decoration: underline;
+                text-decoration-style: dotted;
+                text-underline-offset: .3rem;
+            }
+
+            figure {
+                // max-width: 80vw;
+                // overflow: hidden;
+                margin: 1rem auto;
+
+                figcaption {
+                    text-align: center;
+                    margin: .5rem auto;
+                    text-transform: uppercase;
+                    font-size: 0.8rem;
+                    color: rgba(0, 0, 0, 0.7);
+                    font-weight: bold;
+                    letter-spacing: 0.1rem;
+                }
+
+                audio {
+                    border-radius: .2rem;
+                }
+            }
+
+            ul li {
+                padding: .2rem;
+            }
+
+            p {
+                width: 100%;
+                text-align: center;
+            }
+
+            h2 {
+                text-align: center;
+                font-size: 1.5rem;
+                padding: 0;
+                margin: 1rem 0;
+                letter-spacing: 0.05rem;
+                font-weight: 600;
+            
+                a {
+                    font-size: 1rem;
+                    background: rgba(84, 126, 204, 0.25);
+                    padding: 0.5rem 1rem;
+                    border-radius: 0.2rem;
+                    border-bottom: 0.2rem solid rgba(4, 90, 148, 0.7);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    transition: 100ms;
+                    text-decoration: none;
+                    // display: flex;
+                    // justify-content: center;
+                    // align-items: center;
+
+                    &:hover {
+                        background: rgba(84, 126, 204, 0.35);
+                        transition: 150ms;
+                    }
+                    &:active {
+                        background: rgba(84, 126, 204, 0.55);
+                        transition: 100ms;
+                    }
+
+                    &::after {
+                        position: relative;
+                        top: 3pt;
+                        content: "";
+                        display: inline-block;
+                        width: 0.4rem;
+                        height: 0.4rem;
+                        margin-bottom: 0.38rem;
+                        border-right: 0.2em solid #045a94;
+                        border-top: 0.2em solid #045a94;
+                        transform: rotate(45deg);
+                        margin-right: 0.4rem;
+                        margin-left: 0.5rem;
+                    }
+                }
+
+            }
+        }
+    }
+
+
+    // The symbol below (^=) is a "Substring matching attribute selector"
+    // https://www.w3.org/TR/selectors-3/#attribute-substrings
+    // att^=val   <-- href attribute begins with 'val'
+    // att$=val   <-- href attribute ends with 'val'
+    // att*=val   <-- href attribute contains 'val'
+    a[href $= '.pdf'] {
+        text-decoration: underline;
+        text-decoration-style: dotted;
+        text-underline-offset: .3rem;
+        
+        &::before {
+            content: "PDF";
+            margin: auto 0.5rem;
+            /* max-height: 1.6rem; */
+            height: 1.6rem;
+            padding: 0 0.4rem;
+            color: #88e04d;
+            background-color: rgba(134, 214, 81, 0.3);
+            font-size: 0.8rem;
+            vertical-align: center;
+            display: inline-flex;
+            justify-items: center;
+            align-items: center;
+            border-radius: 0.1rem;
+            text-decoration: none;
+        }
+    }
+
+</style>

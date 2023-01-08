@@ -1,0 +1,28 @@
+---
+// Component Imports
+import Layout from '../layouts/Layout.astro';
+import * as pageContent from './info.md'
+
+
+---
+
+<Layout textColor='blue' footerColor='white' showBackground={ false } page='info'>
+
+	<main class="content">
+		<div class='about-content'>
+			<pageContent.Content/>
+		</div>
+	</main>
+</Layout>
+
+
+<style lang="scss">
+	.about-content {
+		max-width: 40rem;
+		margin: 0 auto;
+
+		img {
+			max-width: 100%;
+		}
+	}
+</style>

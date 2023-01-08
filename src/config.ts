@@ -1,3 +1,3 @@
 export const SITE = {
-  title: 'Astro Blog with Netlify CMS',
+  title: 'Orto Botanico Locatelli',
 };
