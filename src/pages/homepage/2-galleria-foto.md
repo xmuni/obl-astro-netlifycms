@@ -1,6 +1,6 @@
 ---
 title: 2-galleria-foto
-image: /media/cover_mushroom.jpg
+image: /cover_mushroom.jpg
 ---
 ## [GALLERIA FOTOGRAFICA](/obl-foto)
 

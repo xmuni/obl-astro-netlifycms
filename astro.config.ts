@@ -20,8 +20,8 @@ export default defineConfig({
       },
 
       // Configure where our media assets are stored & served from
-      media_folder: 'public/media',
-      public_folder: '/media',
+      media_folder: 'public',
+      public_folder: '/',
 
       // Configure the content collections
       // https://www.netlifycms.org/docs/collection-types/

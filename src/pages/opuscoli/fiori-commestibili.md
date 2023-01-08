@@ -1,22 +1,14 @@
 ---
 url: fiori-commestibili
 title: Fiori commestibili
-image: /assets/media/_Salvia elegans.jpg
+image: /_Salvia_elegans.jpg
 publishDate: 07 Jan 2023
 description: Fiori commestibili
 ---
-## ORTO BOTANICO LOCATELLI
 
-## http://www.mmoblfoto.it
+![FIORI](OK_Fiori_Malva.jpg)
 
-## Fiori commestibili
-
-![FIORI](/OK_Fiori_Malva.jpg)
-
-Video fiori musicale:
-
-https://www.youtube.com/watch?v=a9YSX0D1cog
-
+> Video fiori musicale: https://www.youtube.com/watch?v=a9YSX0D1cog
 
 ## Fiori commestibili
 

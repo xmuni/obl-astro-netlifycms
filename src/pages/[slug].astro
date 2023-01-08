@@ -59,8 +59,8 @@ const { pathname } = Astro.url
             <ul>
             {
                 allPosts.map(post => (
-                    <li class={ pathname === '/'+post.frontmatter.url ? 'active' : 'inactive' }>
-                        <a href={ post.frontmatter.url }>
+                    <li>
+                        <a href={ '/'+post.frontmatter.url } class={ pathname === '/'+post.frontmatter.url ? 'active' : 'inactive' }>
                             { post.frontmatter.title }
                         </a>
                     </li>
@@ -74,27 +74,58 @@ const { pathname } = Astro.url
 
 <style lang="scss" is:global>
 
-    .post a {
-        color: darkgreen !important;
-    }
     
     .post-container {
         max-width: 60rem;
         background-color: white;
         padding: 1vh 0;
         margin: 0 auto;
+        margin-bottom: 3vh;
 
         display: grid;
         grid-template-columns: 1fr auto;
+        position: relative;
+
+        @media screen and (max-width: 600px) {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
 
         .post {
             padding: 0 2vw;
+
+            h2, h3, h4 {
+                color: darkgreen;
+            }
+
+            img {
+                max-width: 100%;
+                border-radius: 3px;
+            }
+            
+            a {
+                color: darkgreen;
+                text-decoration: underline;
+                text-decoration-style: dotted;
+                // padding-bottom: .1em;
+                // border-bottom: 2px solid rgb(98, 189, 45);
+            }
+
+            blockquote {
+                margin-left: 0;
+                padding-left: .5rem;
+                border-left: 2px solid #ddd;
+            }
         }
 
         aside.sidebar {
             // background-color: bisque;
             border-left: 1px solid #ddd;
             padding: 1vh 2vw;
+
+            position: sticky;
+            top: 0;
 
             h2 {
                 margin: 0;
@@ -115,13 +146,17 @@ const { pathname } = Astro.url
                 color: darkgreen;
                 font-weight: 600;
                 // padding: .1em .4em;
-                border-bottom: 2px solid transparent;
 
-                &.active {
-                    // color: white;
-                    // background-color: rgba(0, 100, 0, 0.2);
-                    // border-bottom: 2px solid rgb(60, 138, 15);
-                    border-color: rgb(60, 138, 15);
+                a {
+                    padding-left: .5em;
+                    border-left: 3px solid transparent;
+
+                    &.active {
+                        // color: white;
+                        // background-color: rgba(0, 100, 0, 0.2);
+                        // border-bottom: 2px solid rgb(60, 138, 15);
+                        border-color: rgb(60, 138, 15);
+                    }
                 }
             }
 
