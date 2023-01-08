@@ -25,7 +25,7 @@ homepageSections = homepageSections.sort((a,b) => a.frontmatter.title < b.frontm
 			{ homepageSections.map((section,i) =>
 				<HomepageSection
 					section={ section }
-					reverse={ i%2===0 }
+					even={ i%2===0 }
 					textColor={ i>=2 ? '#ddd' : '#045a94' }
 				/>
 			)}
@@ -37,12 +37,13 @@ homepageSections = homepageSections.sort((a,b) => a.frontmatter.title < b.frontm
 
 <style lang="scss">
 	.homepage-sections {
-		display: flex;
-		flex-direction: column;
+		// display: flex;
+		// flex-direction: column;
 		// align-items: center;
-		gap: 5vw;
-        max-width: 56rem;
+		// gap: 5vw;
+        // max-width: 56rem;
 		margin: 5vh auto;
+		margin-bottom: 0;
 		color: white;
 	
 		a {

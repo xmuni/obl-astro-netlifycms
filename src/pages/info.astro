@@ -6,7 +6,7 @@ import * as pageContent from './info.md'
 
 ---
 
-<Layout textColor='blue' footerColor='white' showBackground={ false } page='info'>
+<Layout title="Info" textColor='blue' footerColor='white' showBackground={ false } page='info'>
 
 	<main class="content">
 		<div class='about-content'>
@@ -16,13 +16,24 @@ import * as pageContent from './info.md'
 </Layout>
 
 
-<style lang="scss">
+<style lang="scss" is:global>
 	.about-content {
-		max-width: 40rem;
-		margin: 0 auto;
+		max-width: 36rem;
+		margin: 5vh auto;
+		text-align: justify;
+
+		h2 {
+			text-align: center;
+			font-size: 1.7em;
+			margin-bottom: 1.5em;
+		}
 
 		img {
 			max-width: 100%;
+		}
+
+		a {
+			text-decoration: underline;
 		}
 	}
 </style>

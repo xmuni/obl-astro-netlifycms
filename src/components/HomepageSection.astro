@@ -3,17 +3,18 @@ import type { MarkdownInstance } from "astro";
 
 export interface Props {
     section: MarkdownInstance<Record<string, any>>,
-    reverse: boolean,
+    even: boolean,
     textColor?: string,
 }
 
-const { section, reverse=false, textColor='#045a94' } = Astro.props
+const { section, even=false, textColor='#045a94' } = Astro.props
 const { frontmatter, Content } = section
 
 // console.log({ reverse })
 ---
 
-<article class={ reverse ? 'reverse' : ''} style={{ color: textColor }}>
+<div class:list={[ "container", !even && 'bg' ]}>
+<article class:list={[ 'homepage-section', even && 'reverse' ]} style={{ color: textColor }}>
 
     <div class='half content'>
         <Content/>
@@ -24,11 +25,25 @@ const { frontmatter, Content } = section
     </div>
 
 </article>
+</div>
 
+<style lang="scss" is:global>
 
-<style lang="scss">
+    .container {
+        width: 100%;
+        // border: 1px dashed brown;
+        border-bottom: 1px solid rgba($color: white, $alpha: 0.15);
+        
+        &.bg {
+            background-color: rgba($color: white, $alpha: 0.05);
+        }
+    }
 
-    article {
+    article.homepage-section {
+        max-width: 56rem;
+        margin: 0 auto;
+        padding: 5vh 0;
+
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
@@ -40,11 +55,13 @@ const { frontmatter, Content } = section
         // margin: 0 auto;
         // background-color: #4d8ae015;
         // padding: 0 2vw;
-        border: 1px dashed brown;
+
+        // border: 1px dashed brown;
 
         &.reverse {
             flex-direction: row-reverse;
         }
+
 
         .half {
             display: flex;
@@ -53,8 +70,9 @@ const { frontmatter, Content } = section
             align-items: center;
             flex-wrap: wrap;
             // max-width: 50%;
-            border: 1px dashed brown;
             width: 45%;
+
+            // border: 1px dashed brown;
 
             ul {
                 margin: 0 auto;
@@ -98,8 +116,13 @@ const { frontmatter, Content } = section
                 }
             }
 
-            ul li {
+            ul {
+                list-style: none;
+                padding-left: 0;
+
+                li {
                 padding: .2rem;
+                }
             }
 
             p {
