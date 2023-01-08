@@ -1,44 +1,40 @@
 ---
 // Component Imports
 import Layout from '../layouts/Layout.astro';
+import cloudinaryImages from '../data/sortCloudinaryImagesByFolder';
+import ImageGallery from '../components/ImageGallery.astro';
+
+// let categories = await Astro.glob('/src/pages/categories/*.md')
+
+// console.log({ cloudinaryImages })
 
 let categories = await Astro.glob('/src/pages/categories/*.md')
 categories = categories.sort((a,b) => a.frontmatter.index < b.frontmatter.index ? -1 : 1)
 
-// console.log(categories.map(cat => cat.frontmatter))
 
-type Category = {
-    index: number,
-    title: string,
-    link: string,
-    image: string,
+let sortedCategoryNames = categories
+    .map(category => category.frontmatter.title)
+    .map(title => title.trim().replaceAll(' ','_').toLowerCase()) // Keep only the category names (which are supposed to match the cloudinary folders)
+
+        
+// Sort cloudinary images according to the category data (stored as markdown)
+let imagesByCategory: { [key:string]: object } = {}
+for(const categoryName of sortedCategoryNames) {
+    if(cloudinaryImages.hasOwnProperty(categoryName)) {
+        // console.log('Adding images from', categoryName)
+        imagesByCategory[categoryName] = cloudinaryImages[categoryName]
+    }
 }
+
+// console.log({ cloudinaryImages, sortedCategoryNames })
+// console.log({ sortedCategoryNames, imagesByCategory })
 
 ---
 
-<Layout title="Fotografie" textColor='blue' headerBg='#e6e6e6' showBackground={ false } page='info'>
 
-	<main class="obl-foto">
-		<h2>Galleria fotografica</h2>
 
-            <div class="galleria-immagini">
-            {
-                categories.map(category => {
-                    // const [id, imgUrl, label] = data
-                    const { title, link, image } = category.frontmatter as Category
-                    
-                    const id = link.split('#').slice(-1)[0]
-
-                    return (
-                        <a href={ '/gallery#'+id }>
-                            <img src={ image } alt={ title }/>
-                            <div class="caption">{ title }</div>
-                        </a>
-                    )
-                })
-            }
-            </div>
-	</main>
+<Layout title="Galleria Fotografica" textColor='green' headerBg='#e6e6e6' showBackground={ false } page='gallery'>
+    <ImageGallery imagesByCategory={ imagesByCategory }/>
 </Layout>
 
 

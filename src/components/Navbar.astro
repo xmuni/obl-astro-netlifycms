@@ -1,8 +1,11 @@
 ---
 const { pathname } = Astro.url
 
+const posts = await Astro.glob('../pages/opuscoli/*.md')
+
 const navbarLinks = {
     'Home': '/',
+    'Opuscoli': '/'+posts[0].frontmatter.url,
     'Fotografie': '/obl-foto',
     'Info': '/info',
 }

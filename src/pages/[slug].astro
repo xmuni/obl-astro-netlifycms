@@ -1,0 +1,166 @@
+---
+// import 'prism-themes/themes/prism-ghcolors.css'
+// import 'prism-react-renderer/themes/github.css'
+
+import Layout from "../layouts/Layout.astro"
+
+
+type PostFrontmatter = {
+    url: string,
+    title: string,
+    image: string,
+    publishDate: string,
+    description: string,
+}
+
+// https://docs.astro.build/en/guides/markdown-content/#mdx-features
+export async function getStaticPaths() {
+  const posts = await Astro.glob('./opuscoli/*.md')
+
+  return posts.map(post => {
+	return {
+		params: { slug: post.frontmatter.url },
+		props: {
+			post,
+			allPosts: posts,
+			slug: post.frontmatter.url,
+		}
+	}
+  })
+}
+
+const { post, allPosts } = Astro.props
+const { Content } = post
+const { url, title, image, publishDate, description } = post.frontmatter
+
+// console.log('[slug] Astro.props', Astro.props)
+
+const { pathname } = Astro.url
+
+// const headings = Astro.props.post.getHeadings()
+// console.log('[slug] Astro.props.post.getHeadings:', headings)
+
+// const relatedPosts = getRelatedPosts(post, allPosts)
+
+// console.log({ post, allPosts })
+// console.log({ pathname })
+
+---
+
+
+<Layout title={ title } textColor="black" showBackground={ false } page='opuscolo'>
+    <!-- <h2>Title: { title }</h2> -->
+    <div class="post-container">
+        <div class="post">
+            <Content/>
+        </div>
+        <aside class="sidebar">
+            <h2 class="div">Opuscoli</h2>
+            <ul>
+            {
+                allPosts.map(post => (
+                    <li class={ pathname === '/'+post.frontmatter.url ? 'active' : 'inactive' }>
+                        <a href={ post.frontmatter.url }>
+                            { post.frontmatter.title }
+                        </a>
+                    </li>
+                ))
+            }
+            </ul>
+        </aside>
+    </div>
+</Layout>
+
+
+<style lang="scss" is:global>
+
+    .post a {
+        color: darkgreen !important;
+    }
+    
+    .post-container {
+        max-width: 60rem;
+        background-color: white;
+        padding: 1vh 0;
+        margin: 0 auto;
+
+        display: grid;
+        grid-template-columns: 1fr auto;
+
+        .post {
+            padding: 0 2vw;
+        }
+
+        aside.sidebar {
+            // background-color: bisque;
+            border-left: 1px solid #ddd;
+            padding: 1vh 2vw;
+
+            h2 {
+                margin: 0;
+                font-size: 1.1rem;
+                font-weight: 600;
+                color: #444;
+            }
+
+            ul {
+                list-style: none;
+                padding-left: 0;
+                display: flex;
+                flex-direction: column;
+                gap: .5rem;
+            }
+
+            li {
+                color: darkgreen;
+                font-weight: 600;
+                // padding: .1em .4em;
+                border-bottom: 2px solid transparent;
+
+                &.active {
+                    // color: white;
+                    // background-color: rgba(0, 100, 0, 0.2);
+                    // border-bottom: 2px solid rgb(60, 138, 15);
+                    border-color: rgb(60, 138, 15);
+                }
+            }
+
+        }
+    }
+</style>
+
+<!-- <Layout title={ post.frontmatter.title } headerImage={ coverImageUrl }>
+
+    <div class="header-and-article overlap-onto-header">
+
+        <PostHeader post={ post } coverImageUrl={ coverImageUrl }/>
+
+        <div class='article-and-sidebar'>
+
+            <div class="article-container">
+                <article class={ `blog-post` } itemscope itemtype="http://schema.org/Article">
+                    <Content components={ customHtmlComponents }/>
+                </article>
+            </div>
+
+            <Sidebar>
+                <Toc headings={ headings }/>
+                <TagList someTags={ post.frontmatter.tags }/>
+            </Sidebar>
+
+        </div>
+
+        { relatedPosts.length>0 ? <div class='more-posts'>related posts</div> : null }
+    </div>
+
+
+    {
+        relatedPosts.length>0 &&
+        <div class="related-posts">
+            <PostsList posts={ relatedPosts.slice(0,5) }/>
+        </div>
+    }
+
+
+    <MainButton><a href='/' class="view-all-posts">View all posts</a></MainButton>
+</Layout> -->

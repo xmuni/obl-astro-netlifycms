@@ -1,0 +1,132 @@
+---
+import { Image, Picture } from '@astrojs/image/components'
+// import { Fancybox } from "@fancyapps/ui/dist/fancybox.esm";
+ 
+// import "fancyapps/ui/dist/fancybox.css";
+import "../../node_modules/@fancyapps/ui/dist/fancybox.css"
+// import Lightbox from './Lightbox.tsx'
+
+
+type ImageData = {
+    url: string,
+    folder: string,
+    filename: string,
+    name: string,
+    public_id: string,
+    width: number,
+    height: number,
+    format: string,
+}
+
+const { imagesByCategory } = Astro.props
+
+// console.log({ imagesByCategory })
+
+
+// <Image
+//     src={ url }
+//     width={ width }
+//     height={ height }
+//     // objectFit='cover'
+//     layout='fill'
+//     alt={ '© '+author }
+// />
+---
+
+<div class='photo-viewer' id='photo-viewer'>
+
+    <div class='categories'>
+    {
+        Object.keys(imagesByCategory).map(categoryName => {
+
+            const images = imagesByCategory[categoryName] as ImageData[]
+            return (
+
+                <div class='category'>
+                    
+                    <h2 id={ categoryName }>{ categoryName.replaceAll('_',' ') }</h2>
+                    <ul>
+                    {
+                        images.slice(0,5).map(image => {
+
+                            // console.log(image)
+                            const { filename, url, width, height, format } = image
+                            // const gurl = 'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png'
+                            // const curl = 'https://res.cloudinary.com/ddhm9hjk4/image/upload/v1658241639/Paesaggi/16-DSC_5180_oleandro_vm_lpfgxk.jpg'
+
+                            const author = filename.includes('_vm_') ? 'Vittorio Minuzzo' : 'mmoblfoto.it'
+
+                            // <Image src={ gurl } alt='image' width={ 300 } height={ 300 }/>
+                            
+                            return (
+                                <li class='thumbnail'>
+                                    <a href={ url } data-fancybox="gallery" data-caption={ '© '+author }>
+                                        <Image src={ url } alt='image' width={ 300 } height={ 300 }/>
+                                    </a>
+                                </li>
+                            )
+                        })
+                    }
+                    </ul>
+
+                </div>
+
+            )
+        })
+    }
+    </div>
+
+</div>
+
+<style lang="scss">
+
+    .categories {
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .category {
+        max-width: 1300px;
+
+        h2 {
+            color: #555;
+            font-weight: normal;
+            text-transform: uppercase;
+            letter-spacing: 0.05rem;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+            display: flex;
+            flex-wrap: wrap;
+
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            
+            @media screen and (max-width: 1300px) {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            @media screen and (max-width: 1000px) {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            @media screen and (max-width: 700px) {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        img {
+            width: 100%;
+            aspect-ratio: 1;
+            // width: 300px;
+            // height: 300px;
+            border: 1px solid #ccc;
+        }
+    }
+
+</style>

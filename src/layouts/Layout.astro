@@ -12,13 +12,13 @@ export interface Props {
 	title?: string,
 	description?: string,
 	textColor: string,
-	footerColor: string,
+	footerColor?: string,
 	showBackground: boolean,
 	page: string,
 	headerBg?: string,
 }
 
-const { title, description, textColor, footerColor, headerBg='transparent', showBackground=false, page, classes=[] } = Astro.props;
+const { title, description, textColor, footerColor='#333', headerBg='transparent', showBackground=false, page, classes=[] } = Astro.props;
 
 const pageTitle = title ? `${ title } - ${ SITE.title }` : SITE.title
 
