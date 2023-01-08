@@ -1,7 +1,4 @@
 ---
-authorURL: https://twitter.com/swithinbank
-layout: ../../layouts/BlogPost.astro
-author: Chris Swithinbank
 url: piante-aromatiche
 title: Piante aromatiche
 image: /assets/blog/_media_cover_mushroom.jpg

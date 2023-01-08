@@ -1,8 +1,11 @@
 ---
 import { SITE } from '../config';
 import Navbar from './Navbar.astro';
+
+const { bgColor } = Astro.props
+
 ---
-<header>
+<header style={{ backgroundColor: bgColor }}>
 	<article>
 		<h1><a href="/">{ SITE.title }</a></h1>
 		<div>La Natura maestra di vita</div>
@@ -18,7 +21,8 @@ import Navbar from './Navbar.astro';
 		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 		display: flex;
 		flex-direction: column;
-		margin-top: 2vh;
+		padding-top: 2vh;
+		z-index: 10;
 
 		h1 {
 			font-size: 2.5rem;

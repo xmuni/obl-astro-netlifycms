@@ -100,14 +100,14 @@ export default defineConfig({
             // { name: 'authorURL', widget: 'string', label: 'Author URL', required: false },
             { name: 'description', widget: 'string', label: 'Descrizione breve', required: false },
             { name: 'body', widget: 'markdown', label: 'Testo dell opuscolo', modes: ['raw'] },
-            {
-              name: 'layout',
-              widget: 'select',
-              default: '../../layouts/BlogPost.astro',
-              options: [
-                { label: 'Blog Post', value: '../../layouts/BlogPost.astro' },
-              ],
-            },
+            // {
+            //   name: 'layout',
+            //   widget: 'select',
+            //   default: '../../layouts/BlogPost.astro',
+            //   options: [
+            //     { label: 'Blog Post', value: '../../layouts/BlogPost.astro' },
+            //   ],
+            // },
           ],
         },
       ],

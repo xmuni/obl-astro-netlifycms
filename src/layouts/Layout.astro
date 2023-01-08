@@ -15,9 +15,10 @@ export interface Props {
 	footerColor: string,
 	showBackground: boolean,
 	page: string,
+	headerBg?: string,
 }
 
-const { title, description, textColor, footerColor, showBackground=false, page, classes=[] } = Astro.props;
+const { title, description, textColor, footerColor, headerBg='transparent', showBackground=false, page, classes=[] } = Astro.props;
 
 const pageTitle = title ? `${ title } - ${ SITE.title }` : SITE.title
 
@@ -40,7 +41,7 @@ const pageTitle = title ? `${ title } - ${ SITE.title }` : SITE.title
 
 	<body>
 		<div class={ ['layout', textColor, page, showBackground?'bg':'', ...classes].join(' ') }>
-			<Header/>
+			<Header bgColor={ headerBg }/>
 			<main>
 				<slot/>
 			</main>
@@ -160,6 +161,10 @@ const pageTitle = title ? `${ title } - ${ SITE.title }` : SITE.title
 		}
 	}
 
+	}
+
+	main {
+		position: relative;
 	}
 
 	.main {

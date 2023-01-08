@@ -1,0 +1,166 @@
+---
+// Component Imports
+import Layout from '../layouts/Layout.astro';
+
+let categories = await Astro.glob('/src/pages/categories/*.md')
+categories = categories.sort((a,b) => a.frontmatter.index < b.frontmatter.index ? -1 : 1)
+
+// console.log(categories.map(cat => cat.frontmatter))
+
+type Category = {
+    index: number,
+    title: string,
+    link: string,
+    image: string,
+}
+
+---
+
+<Layout title="Info" textColor='blue' headerBg='#e6e6e6' footerColor='white' showBackground={ false } page='info'>
+
+	<main class="obl-foto">
+		<h2>Galleria fotografica</h2>
+
+            <div class="galleria-immagini">
+            {
+                categories.map(category => {
+                    // const [id, imgUrl, label] = data
+                    const { title, link, image } = category.frontmatter as Category
+                    
+                    const id = link.split('#').slice(-1)[0]
+
+                    return (
+                        <a href={ '/gallery#'+id }>
+                            <img src={ image } alt={ title }/>
+                            <div class="caption">{ title }</div>
+                        </a>
+                    )
+                })
+            }
+            </div>
+	</main>
+</Layout>
+
+
+<style lang="scss">
+
+    main {
+		margin: 5vh auto;
+        margin-top: 0;
+        padding-top: 0;
+
+		img {
+			max-width: 100%;
+		}
+
+		a {
+			text-decoration: underline;
+		}
+
+        h1,h2 {
+            position: relative;
+			text-align: center;
+			font-size: 2em;
+			margin-bottom: 1.5em;
+            margin: 5vh 0;
+            color: white;
+            font-weight: normal;
+            letter-spacing: 0.06rem;
+        }
+
+        &::before {
+            content: "";
+            width: 100%;
+            height: max(55vh, 25rem);
+            /* background: rgba(60, 105, 30, 0.8); */
+            margin-top: -5vh;
+            background: linear-gradient(to bottom right, rgba(60, 105, 30, 0.8), rgba(60, 105, 30, 0.9));
+            box-shadow: 0 0 5vh 5vh rgba(0, 0, 0, 0.1);
+            position: absolute;
+            top: 0;
+            left: 0;
+            // z-index: 0;
+            transform: skew(0deg, -0.5deg);
+        }
+    }
+
+    .galleria-immagini {
+		max-width: 72rem;
+        display: grid;
+        gap: 2vw;
+        margin: 0 auto;
+        /* flex-wrap: wrap; */
+        /* justify-content: center; */
+        padding: 0 3vw;
+        grid-template-columns: repeat(3, 1fr);
+
+        @media screen and (max-width: 600px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    
+        & > a {
+            position: relative;
+            /* margin: 2vw; */
+            border-radius: 0.3rem;
+            max-width: 300px;
+            max-height: 300px;
+            // aspect-ratio: 1;
+            /* border: 1px solid rgba(0, 0, 0, 0.1); */
+            box-shadow: 0 0.5rem 1rem 1rem rgba(0, 0, 0, 0.05);
+            background: white;
+        
+            *:hover {
+                opacity: 0.9;
+                /* border: 5px solid rgba(255, 255, 255, 0.2); */
+                transition: 100ms;
+            }
+
+            *:active {
+                opacity: 1;
+                transition: 50ms;
+            }
+
+            img {
+                padding: 0;
+                margin: 0;
+                border-radius: 0.3rem;
+                width: 100%;
+                max-width: 400px;
+                height: 100%;
+                max-height: 400px;
+                object-fit: cover;
+            }
+
+            .caption {
+                position: absolute;
+                /* right: 0; */
+                width: 100%;
+                height: 40%;
+                bottom: 0;
+                left: 0;
+                background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.7));
+                /* top: 50%; */
+                /* left: 50%; */
+                /* transform: translate(-50%, -50%); */
+                color: white;
+                letter-spacing: 0.12rem;
+                text-transform: uppercase;
+                text-shadow: 0 0.1rem 1rem rgba(0, 0, 0, 0.5);
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                align-items: center;
+                text-align: center;
+                vertical-align: middle;
+                padding-bottom: 1.5rem;
+                border-radius: inherit;
+                
+                font-size: 1.2rem;
+                @media screen and (max-width: 450px) {
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+
+</style>
