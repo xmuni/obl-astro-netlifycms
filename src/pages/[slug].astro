@@ -3,6 +3,8 @@
 // import 'prism-react-renderer/themes/github.css'
 
 import Layout from "../layouts/Layout.astro"
+import MarkdownLink from "../components/MarkdownLink.astro"
+import MarkdownImage from "../components/MarkdownImage.astro"
 
 
 type PostFrontmatter = {
@@ -15,7 +17,7 @@ type PostFrontmatter = {
 
 // https://docs.astro.build/en/guides/markdown-content/#mdx-features
 export async function getStaticPaths() {
-  const posts = await Astro.glob('../content/opuscoli/*.md')
+  const posts = await Astro.glob('../content/opuscoli/*.mdx')
 
   return posts.map(post => {
 	return {
@@ -45,6 +47,13 @@ const { pathname } = Astro.url
 // console.log({ post, allPosts })
 // console.log({ pathname })
 
+
+const customHtmlComponents = {
+    // Html elements
+	// a: MarkdownLink,
+    img: MarkdownImage,
+}
+
 ---
 
 
@@ -52,7 +61,7 @@ const { pathname } = Astro.url
     <!-- <h2>Title: { title }</h2> -->
     <div class="post-container">
         <div class="post">
-            <Content/>
+            <Content components={ customHtmlComponents }/>
         </div>
         <aside class="sidebar">
             <h2 class="div">Opuscoli</h2>

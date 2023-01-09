@@ -1,0 +1,56 @@
+---
+type Destination = 'internal' | 'external' | 'heading'
+
+export interface Props {
+    href: string,
+}
+
+const { href } = Astro.props
+
+// const destination: Destination =
+//     href.startsWith('/') ? 'internal'
+//   : href.startsWith('#') ? 'heading'
+//   : 'external'
+
+const isAmazonLink = href.startsWith('$')
+
+const destination = 'external' as Destination
+
+// Get the image extension (if any)
+const extension = href.split('.').slice(-1)[0]
+
+const imageExtensions = ['jpg','jpeg','png','gif']
+const isImageLink = !href.startsWith('http') && imageExtensions.includes(extension.toLowerCase())
+
+---
+
+
+
+
+<a href={ href+`?isimage=${isImageLink}` }
+  class={ isAmazonLink ? 'amazon-link' : '' }
+  target={ '_blank' }
+  rel={ destination==='external' ? 'noreferrer' : null }
+>
+  <slot/>
+</a>
+
+<style lang="scss">
+  a.external,
+  a[data-figcaption] {
+
+      position: relative;
+
+      &::after {
+          content: "";
+          display: inline-block;
+          background-image: url('/external-link-alt-solid.svg');
+          height: .6rem;
+          width: .6rem;
+          // margin-left: .2rem;
+          margin-left: -.1rem;
+          margin-bottom: .2rem;
+      }
+  }
+
+</style>

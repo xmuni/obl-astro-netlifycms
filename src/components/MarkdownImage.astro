@@ -1,0 +1,36 @@
+---
+
+// import { Image, Picture } from "@astrojs/image/components"
+
+const { src, alt, title } = Astro.props
+
+
+// Get the image extension (if any)
+const extension = src.split('.').slice(-1)[0]
+
+const imageExtensions = ['jpg','jpeg','png','gif']
+const isRelativeImageLink = !src.startsWith('http') && imageExtensions.includes(extension.toLowerCase()) && !src.includes('/')
+
+const fixedSrc = isRelativeImageLink ? '/'+src : src
+
+// console.log({ src, fixedSrc })
+
+---
+
+
+<img src={ fixedSrc } alt={ alt } />
+
+
+<style>
+    img {
+        max-width: 100%;
+        border-radius: 5px;
+    }
+    .png {
+        margin: auto;
+        display: block;
+        object-fit: contain;
+        /* image-rendering: crisp-edges; */
+        /* image-rendering: -webkit-optimize-contrast; */
+    }
+</style>

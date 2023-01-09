@@ -2,7 +2,6 @@ lockfileVersion: 5.4
 
 specifiers:
   '@astrojs/image': ^0.12.1
-  '@fancyapps/ui': ^4.0.31
   astro: ^1.9.1
   astro-netlify-cms: ^0.3.5
   normalize.css: ^8.0.1
@@ -11,7 +10,6 @@ specifiers:
 
 dependencies:
   '@astrojs/image': 0.12.1_sharp@0.31.3
-  '@fancyapps/ui': 4.0.31
   astro: 1.9.1_sass@1.57.1
   astro-netlify-cms: 0.3.5_astro@1.9.1
   normalize.css: 8.0.1
@@ -654,10 +652,6 @@ packages:
     requiresBuild: true
     dev: false
     optional: true
-
-  /@fancyapps/ui/4.0.31:
-    resolution: {integrity: sha512-D7+PMIloxSOFJyY+lXcNlVDhmssOmDT6PT5fqQUIiws2hT7PH29r0EKZxERmACSQpm6qrFkP7rSguzXWvRJduQ==}
-    dev: false
 
   /@hapi/address/4.1.0:
     resolution: {integrity: sha512-SkszZf13HVgGmChdHo/PxchnSaCJ6cetVqLzyciudzZRT0jcOouIF/Q93mgjw8cce+D+4F4C1Z/WrfFN+O3VHQ==}
