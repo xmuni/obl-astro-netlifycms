@@ -18,17 +18,20 @@ homepageSections = homepageSections.sort((a,b) => a.frontmatter.title < b.frontm
 
 <Layout textColor='blue' footerColor='white' showBackground={ true } page='home'>
 
+	<div class="gallery">
+		<img src="/cover_mushroom.jpg" alt="mushroom" data-fancybox="gallery" data-src="/cover_mushroom.jpg">
+		<img src="/cover_eco.jpg" alt="eco" data-fancybox="gallery" data-src="/cover_eco.jpg">
+	</div>
+
 	<main class="content">
 
 		<div class='homepage-sections'>
 			<!-- { homepageSections.map((p) => <BlogPostPreview post={p} />) } -->
-			{ homepageSections.map((section,i) =>
-				<HomepageSection
-					section={ section }
-					even={ i%2===0 }
-					textColor={ i>=2 ? '#ddd' : '#045a94' }
-				/>
-			)}
+			{ homepageSections.map((section,i) => (
+				<HomepageSection imageUrl={ section.frontmatter.image } even={ i%2===0 } textColor={ i>=2 ? '#ddd' : '#045a94' }>
+					<section.Content/>
+				</HomepageSection>
+			))}
 		</div>
 
 	</main>

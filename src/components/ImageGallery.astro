@@ -1,11 +1,10 @@
 ---
-import { Image, Picture } from '@astrojs/image/components'
 // import { Fancybox } from "@fancyapps/ui/dist/fancybox.esm";
  
 // import "fancyapps/ui/dist/fancybox.css";
-import "../../node_modules/@fancyapps/ui/dist/fancybox.css"
+// <!-- import "../../node_modules/@fancyapps/ui/dist/fancybox.css" -->
 // import Lightbox from './Lightbox.tsx'
-
+import GalleryThumbnail from "./GalleryThumbnail.astro";
 
 type ImageData = {
     url: string,
@@ -47,25 +46,7 @@ const { imagesByCategory } = Astro.props
                     <h2 id={ categoryName }>{ categoryName.replaceAll('_',' ') }</h2>
                     <ul>
                     {
-                        images.slice(0,5).map(image => {
-
-                            // console.log(image)
-                            const { filename, url, width, height, format } = image
-                            // const gurl = 'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png'
-                            // const curl = 'https://res.cloudinary.com/ddhm9hjk4/image/upload/v1658241639/Paesaggi/16-DSC_5180_oleandro_vm_lpfgxk.jpg'
-
-                            const author = filename.includes('_vm_') ? 'Vittorio Minuzzo' : 'mmoblfoto.it'
-
-                            // <Image src={ gurl } alt='image' width={ 300 } height={ 300 }/>
-                            
-                            return (
-                                <li class='thumbnail'>
-                                    <a href={ url } data-fancybox="gallery" data-caption={ '© '+author }>
-                                        <Image src={ url } alt='image' width={ 300 } height={ 300 }/>
-                                    </a>
-                                </li>
-                            )
-                        })
+                        images.map(image => <GalleryThumbnail image={ image } defaultAlt={ categoryName }/>)
                     }
                     </ul>
 

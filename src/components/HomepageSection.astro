@@ -1,14 +1,17 @@
 ---
 import type { MarkdownInstance } from "astro";
+import { AstroComponentFactory } from "astro/dist/runtime/server";
 
 export interface Props {
-    section: MarkdownInstance<Record<string, any>>,
+    imageUrl: string,
+    // Content: AstroComponentFactory,
+    // section: object, // MarkdownInstance<Record<string, any>>,
     even: boolean,
     textColor?: string,
 }
 
-const { section, even=false, textColor='#045a94' } = Astro.props
-const { frontmatter, Content } = section
+const { imageUrl, Content, even=false, textColor='#045a94' } = Astro.props
+// const { frontmatter, Content } = section
 
 // console.log({ reverse })
 ---
@@ -17,11 +20,11 @@ const { frontmatter, Content } = section
 <article class:list={[ 'homepage-section', even && 'reverse' ]} style={{ color: textColor }}>
 
     <div class='half content'>
-        <Content/>
+        <slot/>
     </div>
 
     <div class='half'>
-        <img src={ frontmatter.image } alt="">
+        <img src={ imageUrl } alt="">
     </div>
 
 </article>

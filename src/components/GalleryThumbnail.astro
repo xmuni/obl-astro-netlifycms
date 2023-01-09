@@ -1,0 +1,61 @@
+---
+import { getImage } from '@astrojs/image'
+import { Image, Picture } from '@astrojs/image/components'
+import { GetImageTransform } from '@astrojs/image/dist/lib/get-image'
+
+export interface Props {
+    defaultAlt: string,
+    image: {
+        filename: string,
+        url: string,
+        width: number,
+        height: number,
+        format: string,
+    }
+}
+
+const { image, defaultAlt } = Astro.props
+
+// console.log(image)
+const { filename, url, width, height, format } = image
+const aspect = height/width
+// const gurl = 'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png'
+// const curl = 'https://res.cloudinary.com/ddhm9hjk4/image/upload/v1658241639/Paesaggi/16-DSC_5180_oleandro_vm_lpfgxk.jpg'
+
+const author = filename.includes('_vm_') ? 'Vittorio Minuzzo' : 'mmoblfoto.it'
+
+// <Image src={ gurl } alt='image' width={ 300 } height={ 300 }/>
+
+// const imageData = async () => await ({ src: image.url, alt: 'image' })
+// console.log(image)
+
+// async function getImageData(data: GetImageTransform) {
+//     const imageData = await getImage(data)
+//     return imageData
+// }
+
+// Get high resolution optimized image properties: src, width, height
+const maxWidth = 2000
+const highResWidth = Math.min(width, maxWidth)
+const highResImageData = await getImage({
+    src: url,
+    alt: defaultAlt,
+    width: highResWidth,
+    height: highResWidth*aspect,
+})
+// console.log({ width, height, aspect, highResImageData })
+
+---
+
+
+<li class='thumbnail'>
+    <a href={ highResImageData.src } data-fancybox="gallery" data-caption={ '© '+author }>
+        <Image src={ url } alt={ defaultAlt } width={ 300 } height={ 300 }/>
+    </a>
+</li>
+
+<style>
+    img {
+        border-radius: 3px;
+    }
+</style>

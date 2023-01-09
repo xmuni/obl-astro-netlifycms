@@ -1,6 +1,7 @@
 ---
 import '/node_modules/normalize.css'
 import '/src/styles/global.css'
+import '../styles/fancybox.css'
 
 // import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
@@ -37,6 +38,7 @@ const pageTitle = title ? `${ title } - ${ SITE.title }` : SITE.title
 		<meta name="description" content={description} />
 
 		<!-- <LayoutHead title={ title || 'OBL' } description={ description }/> -->
+		<!-- <link rel="stylesheet" href="/static/fancybox.css"> -->
 	</head>
 
 	<body>
@@ -47,6 +49,9 @@ const pageTitle = title ? `${ title } - ${ SITE.title }` : SITE.title
 			</main>
 			<Footer textColor={ footerColor }/>
 		</div>
+
+		<script is:inline src="/static/fancybox.umd.js"></script>
+		
 	</body>
 
 </html>
