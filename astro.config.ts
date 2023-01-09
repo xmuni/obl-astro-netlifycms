@@ -127,7 +127,8 @@ export default defineConfig({
         create: true,
         delete: true,
         slug: '{{url}}',
-        // extension: 'md',
+        extension: 'mdx', // one of: [yml, yaml, toml, json, md, markdown, html] (or any custom extension, but requires an explicit 'format' below)
+        format: 'frontmatter',
         fields: [
         {
           name: 'url',
