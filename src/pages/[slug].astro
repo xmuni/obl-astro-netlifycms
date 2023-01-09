@@ -3,7 +3,7 @@
 // import 'prism-react-renderer/themes/github.css'
 
 import Layout from "../layouts/Layout.astro"
-import MarkdownLink from "../components/MarkdownLink.astro"
+// import MarkdownLink from "../components/MarkdownLink.astro"
 import MarkdownImage from "../components/MarkdownImage.astro"
 
 
@@ -15,9 +15,16 @@ type PostFrontmatter = {
     description: string,
 }
 
+type PdfLink = {
+    title: string,
+    link: string,
+}
+
 // https://docs.astro.build/en/guides/markdown-content/#mdx-features
 export async function getStaticPaths() {
-  const posts = await Astro.glob('../content/opuscoli/*.mdx')
+  const posts = await Astro.glob('../content/opuscoli/*.md')
+
+//   const pdfLinks = posts.map(post => ({ title: post.frontmatter.title, link: post.frontmatter.pdf }) as PdfLink)
 
   return posts.map(post => {
 	return {
@@ -25,13 +32,14 @@ export async function getStaticPaths() {
 		props: {
 			post,
 			allPosts: posts,
+            // pdfLinks,
 			slug: post.frontmatter.url,
 		}
 	}
   })
 }
 
-const { post, allPosts } = Astro.props
+const { post, allPosts, pdfLinks } = Astro.props
 const { Content } = post
 const { url, title, image, publishDate, description } = post.frontmatter
 
@@ -54,6 +62,11 @@ const customHtmlComponents = {
     img: MarkdownImage,
 }
 
+// console.log({ allPosts })
+
+const postsWithoutPdfLink = allPosts.filter(post => !post.frontmatter.pdf)
+const postsWithPdfLink = allPosts.filter(post => post.frontmatter.pdf)
+
 ---
 
 
@@ -64,18 +77,31 @@ const customHtmlComponents = {
             <Content components={ customHtmlComponents }/>
         </div>
         <aside class="sidebar">
-            <h2 class="div">Opuscoli</h2>
-            <ul>
-            {
-                allPosts.map(post => (
-                    <li>
-                        <a href={ '/'+post.frontmatter.url } class={ pathname === '/'+post.frontmatter.url ? 'active' : 'inactive' }>
-                            { post.frontmatter.title }
-                        </a>
-                    </li>
-                ))
-            }
-            </ul>
+            <div class="links">
+                <h2 class="div">Opuscoli</h2>
+                <ul>
+                {
+                    [...postsWithoutPdfLink, ...postsWithPdfLink].map(post => {
+                        const postHasPdf = post.frontmatter.pdf?.length > 0
+                        const url = postHasPdf ? post.frontmatter.pdf : '/'+post.frontmatter.url
+                        return (
+                            <li>
+                                <a href={ url } class={ pathname === '/'+post.frontmatter.url ? 'active' : 'inactive' } target={ postHasPdf ? '_blank' : 'self' }>
+                                    { post.frontmatter.title }{ postHasPdf && ' (pdf)' }
+                                </a>
+                            </li>
+                        )
+                    })
+                }
+                {/*
+                    pdfLinks.map(data => (
+                        <li>
+                            <a href={ data.link } target="_blank">{ data.title }</a>
+                        </li>
+                    ))
+                */}
+                </ul>
+            </div>
         </aside>
     </div>
 </Layout>
@@ -85,9 +111,9 @@ const customHtmlComponents = {
 
     
     .post-container {
-        max-width: 60rem;
+        max-width: 52rem;
         background-color: white;
-        padding: 1vh 0;
+        padding: 3vh 0;
         margin: 0 auto;
         margin-bottom: 3vh;
 
@@ -133,8 +159,10 @@ const customHtmlComponents = {
             border-left: 1px solid #ddd;
             padding: 1vh 2vw;
 
-            position: sticky;
-            top: 0;
+            .links {
+                position: sticky;
+                top: 1rem;
+            }
 
             h2 {
                 margin: 0;

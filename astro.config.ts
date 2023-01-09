@@ -20,13 +20,15 @@ const imageConfig = {
 export default defineConfig({
 
   // https://vitejs.dev/config/build-options.html#build-rollupoptions
+  /*
   vite: {
     build: {
       rollupOptions: {
-        external: ['src/styles/blog.css?used&raw'],
+        external: ['src/styles/blog.css?used&raw'], // IDK why this is needed
       }
     }
   },
+  */
 
   markdown: {
     remarkPlugins: [
@@ -125,16 +127,25 @@ export default defineConfig({
         create: true,
         delete: true,
         slug: '{{url}}',
-        extension: 'mdx',
-        fields: [{
+        // extension: 'md',
+        fields: [
+        {
           name: 'url',
           widget: 'string',
-          label: 'URL (per esempio: piante-aromatiche-in-italia)'
-        }, {
+          label: 'URL (per esempio: piante-aromatiche-in-italia)',
+        },
+        {
           name: 'title',
           widget: 'string',
-          label: 'Titolo'
-        }, {
+          label: 'Titolo',
+        },
+        {
+          name: 'pdf',
+          widget: 'file',
+          label: 'PDF',
+          required: false,
+        },
+        {
           name: 'publishDate',
           widget: 'datetime',
           format: 'DD MMM YYYY',
@@ -148,12 +159,13 @@ export default defineConfig({
           name: 'description',
           widget: 'string',
           label: 'Descrizione breve',
-          required: false
+          required: false,
         }, {
           name: 'body',
           widget: 'markdown',
           label: 'Testo dell opuscolo',
-          modes: ['raw']
+          modes: ['raw'],
+          required: false,
         }
         // {
         //   name: 'layout',
@@ -167,7 +179,7 @@ export default defineConfig({
       }]
     },
 
-    previewStyles: ['src/styles/blog.css']
+    // previewStyles: ['src/styles/blog.css']
   }),
   image(imageConfig),
   mdx(),

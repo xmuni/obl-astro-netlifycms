@@ -1,14 +1,19 @@
 ---
 const { pathname } = Astro.url
 
-const posts = await Astro.glob('../content/opuscoli/*.mdx')
+const posts = await Astro.glob('../content/opuscoli/*.md')
+
+const firstPostWithoutPdf = posts.filter(post => !post.frontmatter.pdf)[0]
 
 const navbarLinks = {
     'Home': '/',
-    'Opuscoli': '/'+posts[0].frontmatter.url,
+    'Opuscoli': '/'+firstPostWithoutPdf.frontmatter.url,
     'Fotografie': '/obl-foto',
     'Info': '/info',
 }
+
+console.log({ pathname, urls: Object.values(navbarLinks) })
+
 ---
 
     

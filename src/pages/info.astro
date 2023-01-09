@@ -2,7 +2,11 @@
 // Component Imports
 import Layout from '../layouts/Layout.astro';
 import * as pageContent from '../content/info.md'
+import MarkdownImage from '../components/MarkdownImage.astro';
 
+const customHtmlElements = {
+	img: MarkdownImage,
+}
 
 ---
 
@@ -10,7 +14,7 @@ import * as pageContent from '../content/info.md'
 
 	<main class="content">
 		<div class='about-content'>
-			<pageContent.Content/>
+			<pageContent.Content components={ customHtmlElements }/>
 		</div>
 	</main>
 </Layout>
