@@ -2,7 +2,7 @@
 // Component Imports
 import Layout from '../layouts/Layout.astro';
 
-let categories = await Astro.glob('/src/pages/categories/*.md')
+let categories = await Astro.glob('../content/categories/*.md')
 categories = categories.sort((a,b) => a.frontmatter.index < b.frontmatter.index ? -1 : 1)
 
 // console.log(categories.map(cat => cat.frontmatter))

@@ -4,7 +4,7 @@ import Layout from '../layouts/Layout.astro';
 import HomepageSection from '../components/HomepageSection.astro';
 
 // Data Fetching: List all Markdown posts in the repo.
-let homepageSections = await Astro.glob('./homepage/*.md')
+let homepageSections = await Astro.glob('../content/homepage/*.md')
 homepageSections = homepageSections.sort((a,b) => a.frontmatter.title < b.frontmatter.title ? -1 : 1)
 
 // console.log({ homepageSections })

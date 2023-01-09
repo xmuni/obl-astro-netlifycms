@@ -15,7 +15,7 @@ type PostFrontmatter = {
 
 // https://docs.astro.build/en/guides/markdown-content/#mdx-features
 export async function getStaticPaths() {
-  const posts = await Astro.glob('./opuscoli/*.md')
+  const posts = await Astro.glob('../content/opuscoli/*.md')
 
   return posts.map(post => {
 	return {

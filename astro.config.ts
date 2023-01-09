@@ -32,7 +32,7 @@ export default defineConfig({
           name: 'homepage',
           label: 'Sezioni homepage',
           label_singular: 'Sezione homepage',
-          folder: 'src/pages/homepage',
+          folder: 'src/content/homepage',
           slug: '{{title}}',
           create: true,
           delete: true,
@@ -56,7 +56,7 @@ export default defineConfig({
             {
               label: 'Home',
               name: 'home',
-              file: 'src/pages/home.md',
+              file: 'src/content/home.md',
               fields: [
                 { name: 'header', widget: 'string', label: 'Header', required: false },
                 { name: 'body', widget: 'markdown', label: 'Post Body', modes: ['raw'] },
@@ -67,7 +67,7 @@ export default defineConfig({
             {
               label: 'Info',
               name: 'info',
-              file: 'src/pages/info.md',
+              file: 'src/content/info.md',
               fields: [
                 { name: 'title', widget: 'string', label: 'Titolo', required: false },
                 { name: 'body', widget: 'markdown', label: 'Post Body', modes: ['raw'] },
@@ -81,7 +81,7 @@ export default defineConfig({
           name: 'opuscoli',
           label: 'Opuscoli',
           label_singular: 'Opuscolo',
-          folder: 'src/pages/opuscoli',
+          folder: 'src/content/opuscoli',
           create: true,
           delete: true,
           slug: '{{url}}',
