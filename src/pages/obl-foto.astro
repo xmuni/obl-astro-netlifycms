@@ -21,23 +21,23 @@ type Category = {
 	<main class="obl-foto">
 		<h2>Galleria fotografica</h2>
 
-            <div class="galleria-immagini">
-            {
-                categories.map(category => {
-                    // const [id, imgUrl, label] = data
-                    const { title, link, image } = category.frontmatter as Category
-                    
-                    const id = link.split('#').slice(-1)[0]
+        <div class="galleria-immagini">
+        {
+            categories.map(category => {
+                // const [id, imgUrl, label] = data
+                const { title, link, image } = category.frontmatter as Category
+                
+                const id = link.split('#').slice(-1)[0]
 
-                    return (
-                        <a href={ '/gallery#'+id }>
-                            <img src={ image } alt={ title }/>
-                            <div class="caption">{ title }</div>
-                        </a>
-                    )
-                })
-            }
-            </div>
+                return (
+                    <a href={ '/gallery#'+id }>
+                        <img src={ image } alt={ title }/>
+                        <div class="caption">{ title }</div>
+                    </a>
+                )
+            })
+        }
+        </div>
 	</main>
 </Layout>
 
@@ -48,6 +48,10 @@ type Category = {
 		margin: 5vh auto;
         margin-top: 0;
         padding-top: 0;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
 		img {
 			max-width: 100%;
@@ -85,13 +89,19 @@ type Category = {
     }
 
     .galleria-immagini {
-		max-width: 72rem;
-        display: grid;
-        gap: 2vw;
-        margin: 0 auto;
+		// max-width: 72rem;
+        // margin: 0 auto;
         /* flex-wrap: wrap; */
         /* justify-content: center; */
         padding: 0 3vw;
+
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        display: grid;
+        gap: 2vw;
         grid-template-columns: repeat(3, 1fr);
 
         @media screen and (max-width: 600px) {
@@ -102,13 +112,13 @@ type Category = {
             position: relative;
             /* margin: 2vw; */
             border-radius: 0.3rem;
-            max-width: 300px;
-            max-height: 300px;
-            // aspect-ratio: 1;
+            width: 300px;
+            height: 300px;
+            aspect-ratio: 1;
+
             /* border: 1px solid rgba(0, 0, 0, 0.1); */
             box-shadow: 0 0.5rem 1rem 1rem rgba(0, 0, 0, 0.05);
             background: white;
-            aspect-ratio: 1;
         
             *:hover {
                 opacity: 0.9;
