@@ -4,6 +4,7 @@
 [x] mdx
 [x] analytics
 [x] cloudinary fetch
+[ ] sitemap
 [ ] better post css
 
 

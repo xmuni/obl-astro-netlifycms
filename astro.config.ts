@@ -9,7 +9,7 @@ import mdx from "@astrojs/mdx";
 import remarkExternalLinks from 'remark-external-links';
 import remarkToc from 'remark-toc';
 import remarkGfm from 'remark-gfm';
-
+import sitemap from "@astrojs/sitemap";
 const imageConfig = {
   serviceEntryPoint: '@astrojs/image/sharp'
 };
@@ -17,8 +17,12 @@ const imageConfig = {
 // https://astro.build/config
 
 // https://astro.build/config
+
+// https://astro.build/config
 export default defineConfig({
 
+  site: 'https://www.mmoblfoto.it',
+  
   // https://vitejs.dev/config/build-options.html#build-rollupoptions
   /*
   vite: {
@@ -31,11 +35,7 @@ export default defineConfig({
   */
 
   markdown: {
-    remarkPlugins: [
-      remarkToc,
-      remarkExternalLinks,
-      remarkGfm,
-    ],
+    remarkPlugins: [remarkToc, remarkExternalLinks, remarkGfm]
     // rehypePlugins: [
 
     // ],
@@ -110,7 +110,7 @@ export default defineConfig({
         }]
       },
       */
-     
+
       // (repeatable) Blog posts
       {
         name: 'pages',
@@ -120,21 +120,19 @@ export default defineConfig({
         create: false,
         delete: false,
         slug: '{{url}}',
-        extension: 'mdx', // one of: [yml, yaml, toml, json, md, markdown, html] (or any custom extension, but requires an explicit 'format' below)
+        extension: 'mdx',
+        // one of: [yml, yaml, toml, json, md, markdown, html] (or any custom extension, but requires an explicit 'format' below)
         format: 'frontmatter',
-        fields: [
-          {
-            name: 'title',
-            widget: 'string',
-            label: 'Titolo della pagina',
-          },
-          {
-            name: 'body',
-            widget: 'markdown',
-            label: 'Testo della pagina',
-            modes: ['raw'],
-          },
-        ]
+        fields: [{
+          name: 'title',
+          widget: 'string',
+          label: 'Titolo della pagina'
+        }, {
+          name: 'body',
+          widget: 'markdown',
+          label: 'Testo della pagina',
+          modes: ['raw']
+        }]
       },
       // (repeatable) Blog posts
       {
@@ -145,26 +143,23 @@ export default defineConfig({
         create: true,
         delete: true,
         slug: '{{url}}',
-        extension: 'mdx', // one of: [yml, yaml, toml, json, md, markdown, html] (or any custom extension, but requires an explicit 'format' below)
+        extension: 'mdx',
+        // one of: [yml, yaml, toml, json, md, markdown, html] (or any custom extension, but requires an explicit 'format' below)
         format: 'frontmatter',
-        fields: [
-        {
+        fields: [{
           name: 'url',
           widget: 'string',
-          label: 'URL (per esempio: piante-aromatiche-in-italia)',
-        },
-        {
+          label: 'URL (per esempio: piante-aromatiche-in-italia)'
+        }, {
           name: 'title',
           widget: 'string',
-          label: 'Titolo',
-        },
-        {
+          label: 'Titolo'
+        }, {
           name: 'pdf',
           widget: 'file',
           label: 'PDF',
-          required: false,
-        },
-        {
+          required: false
+        }, {
           name: 'publishDate',
           widget: 'datetime',
           format: 'DD MMM YYYY',
@@ -178,13 +173,13 @@ export default defineConfig({
           name: 'description',
           widget: 'string',
           label: 'Descrizione breve',
-          required: false,
+          required: false
         }, {
           name: 'body',
           widget: 'markdown',
           label: 'Testo dell opuscolo',
           modes: ['raw'],
-          required: false,
+          required: false
         }
         // {
         //   name: 'layout',
@@ -196,11 +191,8 @@ export default defineConfig({
         // },
         ]
       }]
-    },
+    }
 
     // previewStyles: ['src/styles/blog.css']
-  }),
-  image(imageConfig),
-  mdx(),
-]
+  }), image(imageConfig), mdx(), sitemap()]
 });
