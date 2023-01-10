@@ -24,7 +24,7 @@ const { title, description, textColor, footerColor='#333', headerBg='transparent
 const pageTitle = title ? `${ title } - ${ SITE.title }` : SITE.title
 
 // const gtag = 'G-QMWS9HGPYV' // UA
-const gtag = import.meta.env.GA4_ID || 'G-5X5YWB77EN' // GA4
+// const gtag = import.meta.env.GA4_ID || 'G-5X5YWB77EN' // GA4
 
 ---
 
@@ -42,12 +42,12 @@ const gtag = import.meta.env.GA4_ID || 'G-5X5YWB77EN' // GA4
 
 		<!-- <LayoutHead title={ title || 'OBL' } description={ description }/> -->
 		<!-- <link rel="stylesheet" href="/static/fancybox.css"> -->
-		<script is:inline async src={ 'https://www.googletagmanager.com/gtag/js?id='+gtag }></script>
+		<script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-5X5YWB77EN"></script>
 		<script is:inline>
 		  window.dataLayer = window.dataLayer || [];
 		  function gtag(){dataLayer.push(arguments);}
 		  gtag('js', new Date());
-		  gtag('config', { gtag });
+		  gtag('config', 'G-5X5YWB77EN');
 		</script>
 	</head>
 
