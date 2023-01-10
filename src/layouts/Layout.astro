@@ -23,6 +23,8 @@ const { title, description, textColor, footerColor='#333', headerBg='transparent
 
 const pageTitle = title ? `${ title } - ${ SITE.title }` : SITE.title
 
+const gtag = 'G-QMWS9HGPYV'
+
 ---
 
 <html lang='it'>
@@ -39,6 +41,13 @@ const pageTitle = title ? `${ title } - ${ SITE.title }` : SITE.title
 
 		<!-- <LayoutHead title={ title || 'OBL' } description={ description }/> -->
 		<!-- <link rel="stylesheet" href="/static/fancybox.css"> -->
+		<script is:inline async src={ 'https://www.googletagmanager.com/gtag/js?id='+gtag }></script>
+		<script is:inline>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+		  gtag('config', gtag);
+		</script>
 	</head>
 
 	<body>
