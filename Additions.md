@@ -2,7 +2,8 @@
 
 [x] fancybox
 [x] mdx
-[ ] analytics
+[x] analytics
+[x] cloudinary fetch
 [ ] better post css
 
 
