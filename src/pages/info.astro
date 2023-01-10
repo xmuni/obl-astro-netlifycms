@@ -2,13 +2,19 @@
 // Component Imports
 import Layout from '../layouts/Layout.astro';
 // import * as pageContent from '../content/info.md'
-import * as pageContent from '../content/info.mdx'
+import * as pageContent from '../content/pages/info.mdx'
 import MarkdownImage from '../components/MarkdownImage.astro';
 
 
 const customHtmlElements = {
 	img: MarkdownImage,
 }
+
+// console.log(pageContent.rawContent())
+
+// const html = pageContent.compiledContent()
+// before = '<img src="'
+// const after = '<img src="/'
 
 ---
 

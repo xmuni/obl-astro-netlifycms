@@ -7,7 +7,7 @@ const { textColor } = Astro.props
     <span>Design © { (new Date()).getFullYear() } Vittorio Minuzzo</span>
     {
         import.meta.env.DEV &&
-        <a href="/admin">- Admin Dashboard</a>
+        <a href="/admin" target="_blank" class="admin">Admin Dashboard</a>
     }
 </footer>
 
@@ -27,5 +27,16 @@ const { textColor } = Astro.props
         &.white {
             color: rgba($color: white, $alpha: .5);
         }
+    }
+    .admin {
+        position: fixed;
+        bottom: 1rem;
+        right: 1rem;
+        background-color: #555;
+        color: white;
+        padding: .5rem;
+        border-radius: 3px;
+        max-width: 8rem;
+        border: 1px solid black;
     }
 </style>

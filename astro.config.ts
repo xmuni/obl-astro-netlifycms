@@ -84,23 +84,13 @@ export default defineConfig({
         }]
       },
       // (single) Pages
+      /*
       {
         label: 'Pagine',
         name: 'pages',
         files: [
-        // Home
-        /*
-        {
-          label: 'Home',
-          name: 'home',
-          file: 'src/content/home.md',
-          fields: [
-            { name: 'header', widget: 'string', label: 'Header', required: false },
-            { name: 'body', widget: 'markdown', label: 'Post Body', modes: ['raw'] },
-          ],
-        },
-        */
         // Info
+        // https://www.netlifycms.org/docs/collection-types
         {
           label: 'Info',
           name: 'info',
@@ -109,14 +99,42 @@ export default defineConfig({
             name: 'title',
             widget: 'string',
             label: 'Titolo',
-            required: false
+            required: false,
           }, {
             name: 'body',
             widget: 'markdown',
             label: 'Post Body',
-            modes: ['raw']
+            modes: ['raw'],
+            required: false,
           }]
         }]
+      },
+      */
+     
+      // (repeatable) Blog posts
+      {
+        name: 'pages',
+        label: 'Pagine',
+        label_singular: 'Pagina',
+        folder: 'src/content/pages/',
+        create: false,
+        delete: false,
+        slug: '{{url}}',
+        extension: 'mdx', // one of: [yml, yaml, toml, json, md, markdown, html] (or any custom extension, but requires an explicit 'format' below)
+        format: 'frontmatter',
+        fields: [
+          {
+            name: 'title',
+            widget: 'string',
+            label: 'Titolo della pagina',
+          },
+          {
+            name: 'body',
+            widget: 'markdown',
+            label: 'Testo della pagina',
+            modes: ['raw'],
+          },
+        ]
       },
       // (repeatable) Blog posts
       {

@@ -140,6 +140,12 @@ const postsWithPdfLink = allPosts.filter(post => post.frontmatter.pdf)
                 max-width: 100%;
                 border-radius: 3px;
             }
+
+            ul {
+                li > p {
+                    margin: 0;
+                }
+            }
             
             a {
                 color: darkgreen;
