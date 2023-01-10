@@ -1,4 +1,5 @@
 ---
+import { matchesPathname } from "../utils"
 const { pathname } = Astro.url
 
 const posts = await Astro.glob('../content/opuscoli/*.mdx')
@@ -22,7 +23,7 @@ console.log({ pathname, urls: Object.values(navbarLinks) })
     {
         Object.keys(navbarLinks).map(label => (
             <li>
-                <a href={ navbarLinks[label] } class={ pathname.endsWith(navbarLinks[label]) ? 'active' : 'inactive' }>
+                <a href={ navbarLinks[label] } class={ matchesPathname(navbarLinks[label],pathname) ? 'active' : 'inactive' }>
                     { label }
                 </a>
             </li>
