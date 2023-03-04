@@ -43,6 +43,7 @@ export default defineConfig({
 
   integrations: [NetlifyCMS({
     config: {
+      locale: 'it',
       // Use Netlify’s “Git Gateway” authentication and target our default branch
       backend: {
         name: 'git-gateway',
@@ -65,28 +66,23 @@ export default defineConfig({
         delete: true,
         // https://www.netlifycms.org/docs/widgets/
         fields: [
-          // { name: 'ordine', label: 'Ordine (1, 2, 3...)', widget: 'number', default: 1, min: 1, },
-          {
-            name: 'title',
-            widget: 'string',
-            label: 'Nome sezione',
-            required: true,
-          },
-          // { name: 'title', widget: 'string', label: 'Titolo', required: false, },
-          {
-            name: 'image',
-            widget: 'image',
-            label: 'Immagine',
-            required: true,
-          },
-          {
-            name: 'body',
-            widget: 'markdown',
-            label: 'Testo',
-            modes: ['raw'],
-            required: true,
-          }
-        ]
+        // { name: 'ordine', label: 'Ordine (1, 2, 3...)', widget: 'number', default: 1, min: 1, },
+        {
+          name: 'title',
+          widget: 'string',
+          label: 'Nome sezione'
+        },
+        // { name: 'title', widget: 'string', label: 'Titolo', required: false, },
+        {
+          name: 'image',
+          widget: 'image',
+          label: 'Immagine'
+        }, {
+          name: 'body',
+          widget: 'markdown',
+          label: 'Testo',
+          modes: ['raw']
+        }]
       },
       // (single) Pages
       /*
@@ -128,16 +124,19 @@ export default defineConfig({
         extension: 'mdx',
         // one of: [yml, yaml, toml, json, md, markdown, html] (or any custom extension, but requires an explicit 'format' below)
         format: 'frontmatter',
-        fields: [{
-          name: 'title',
-          widget: 'string',
-          label: 'Titolo della pagina'
-        }, {
-          name: 'body',
-          widget: 'markdown',
-          label: 'Testo della pagina',
-          modes: ['raw']
-        }]
+        fields: [
+          {
+            name: 'title',
+            widget: 'string',
+            label: 'Titolo della pagina'
+          },
+          {
+            name: 'body',
+            widget: 'markdown',
+            label: 'Testo della pagina',
+            modes: ['raw']
+          },
+        ]
       },
       // (repeatable) Blog posts
       {
@@ -155,22 +154,33 @@ export default defineConfig({
           name: 'url',
           widget: 'string',
           label: 'URL (per esempio: piante-aromatiche-in-italia)'
-        }, {
+        },
+        {
           name: 'title',
           widget: 'string',
-          label: 'Titolo'
-        }, {
-          name: 'pdf',
-          widget: 'file',
-          label: 'PDF',
-          required: false
-        }, {
+          label: 'Titolo',
+          required: true,
+        },
+        {
+          name: 'image',
+          widget: 'image',
+          label: 'Immagine di copertina',
+          required: true,
+        },
+        // {
+        //   name: 'pdf',
+        //   widget: 'file',
+        //   label: 'PDF',
+        //   required: false
+        // },
+        {
           name: 'publishDate',
           widget: 'datetime',
           format: 'DD MMM YYYY',
           date_format: 'DD MMM YYYY',
           time_format: false,
-          label: 'Data di pubblicazione opuscolo'
+          label: 'Data di pubblicazione opuscolo',
+          required: false,
         },
         // { name: 'author', widget: 'string', label: 'Author Name', required: false },
         // { name: 'authorURL', widget: 'string', label: 'Author URL', required: false },
@@ -178,13 +188,13 @@ export default defineConfig({
           name: 'description',
           widget: 'string',
           label: 'Descrizione breve',
-          required: false
+          required: false,
         }, {
           name: 'body',
           widget: 'markdown',
           label: 'Testo dell opuscolo',
           modes: ['raw'],
-          required: false
+          required: false,
         }
         // {
         //   name: 'layout',
