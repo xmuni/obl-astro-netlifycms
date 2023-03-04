@@ -65,23 +65,28 @@ export default defineConfig({
         delete: true,
         // https://www.netlifycms.org/docs/widgets/
         fields: [
-        // { name: 'ordine', label: 'Ordine (1, 2, 3...)', widget: 'number', default: 1, min: 1, },
-        {
-          name: 'title',
-          widget: 'string',
-          label: 'Nome sezione'
-        },
-        // { name: 'title', widget: 'string', label: 'Titolo', required: false, },
-        {
-          name: 'image',
-          widget: 'image',
-          label: 'Immagine'
-        }, {
-          name: 'body',
-          widget: 'markdown',
-          label: 'Testo',
-          modes: ['raw']
-        }]
+          // { name: 'ordine', label: 'Ordine (1, 2, 3...)', widget: 'number', default: 1, min: 1, },
+          {
+            name: 'title',
+            widget: 'string',
+            label: 'Nome sezione',
+            required: true,
+          },
+          // { name: 'title', widget: 'string', label: 'Titolo', required: false, },
+          {
+            name: 'image',
+            widget: 'image',
+            label: 'Immagine',
+            required: true,
+          },
+          {
+            name: 'body',
+            widget: 'markdown',
+            label: 'Testo',
+            modes: ['raw'],
+            required: true,
+          }
+        ]
       },
       // (single) Pages
       /*

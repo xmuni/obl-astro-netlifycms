@@ -1,0 +1,134 @@
+---
+// import 'prism-themes/themes/prism-ghcolors.css'
+// import 'prism-react-renderer/themes/github.css'
+
+import Layout from "../layouts/Layout.astro"
+
+
+type PostFrontmatter = {
+    url: string,
+    title: string,
+    image: string,
+    publishDate: string,
+    description: string,
+}
+
+// https://docs.astro.build/en/guides/markdown-content/#mdx-features
+const posts = await Astro.glob('../content/opuscoli/*.mdx')
+
+// console.log(posts.map(post => post.frontmatter.image))
+
+// const { Content } = post
+// const { url, title, image, publishDate, description } = post.frontmatter
+
+---
+
+
+<Layout title='Opuscoli' textColor="black" showBackground={ false } page='opuscolo'>
+    <main>
+    <h1>Opuscoli</h1>
+    <ul>
+    {
+        posts.map(post => (
+            <li>
+                <a href={ post.frontmatter.url }>
+                    <img class="thumbnail" src={ post.frontmatter.image || '/orto.jpg' } alt={ post.frontmatter.title }/>
+                </a>
+                <a href={ post.frontmatter.url }>
+                    <h2>{ post.frontmatter.title }</h2>
+                </a>
+            </li>
+        ))
+    }
+    </ul>
+    </main>
+</Layout>
+
+
+<style lang="scss">
+
+    :global(img.thumbnail) {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+
+    main {
+        // max-width: 40rem;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+
+        h1 {
+            text-align: center;
+            color: #006400;
+            // background-color: #0064002b;
+            margin: 3vh auto;
+            padding: .4em .7em;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: max(2vw, 4vh);
+            margin-bottom: 3vh;
+        }
+
+        li {
+            width: 300px;
+            color: darkgreen;
+            font-weight: 600;
+            background-color: white;
+            text-align: center;
+            padding-bottom: .5rem;
+            border-radius: 5px;
+
+            &.active {
+                // color: white;
+                background-color: rgba(0, 100, 0, 0.2);
+            }
+        }
+    }
+
+</style>
+
+<!-- <Layout title={ post.frontmatter.title } headerImage={ coverImageUrl }>
+
+    <div class="header-and-article overlap-onto-header">
+
+        <PostHeader post={ post } coverImageUrl={ coverImageUrl }/>
+
+        <div class='article-and-sidebar'>
+
+            <div class="article-container">
+                <article class={ `blog-post` } itemscope itemtype="http://schema.org/Article">
+                    <Content components={ customHtmlComponents }/>
+                </article>
+            </div>
+
+            <Sidebar>
+                <Toc headings={ headings }/>
+                <TagList someTags={ post.frontmatter.tags }/>
+            </Sidebar>
+
+        </div>
+
+        { relatedPosts.length>0 ? <div class='more-posts'>related posts</div> : null }
+    </div>
+
+
+    {
+        relatedPosts.length>0 &&
+        <div class="related-posts">
+            <PostsList posts={ relatedPosts.slice(0,5) }/>
+        </div>
+    }
+
+
+    <MainButton><a href='/' class="view-all-posts">View all posts</a></MainButton>
+</Layout> -->
