@@ -6,7 +6,7 @@ import Layout from "../layouts/Layout.astro"
 // import MarkdownLink from "../components/MarkdownLink.astro"
 import MarkdownImage from "../components/MarkdownImage.astro"
 import { MDXInstance } from "astro"
-import { matchesPathname } from "../utils"
+import { matchesPathname, sanitizeSlug } from "../utils"
 
 
 type PostFrontmatter = {
@@ -30,12 +30,12 @@ export async function getStaticPaths() {
 
   return posts.map(post => {
 	return {
-		params: { slug: post.frontmatter.url },
+		params: { slug: sanitizeSlug(post.frontmatter.url) },
 		props: {
 			post,
 			allPosts: posts,
             // pdfLinks,
-			slug: post.frontmatter.url,
+			slug: sanitizeSlug(post.frontmatter.url),
 		}
 	}
   })

@@ -3,6 +3,7 @@
 // import 'prism-react-renderer/themes/github.css'
 
 import Layout from "../layouts/Layout.astro"
+import { sanitizeSlug } from "../utils";
 
 
 type PostFrontmatter = {
@@ -31,10 +32,10 @@ const posts = await Astro.glob('../content/opuscoli/*.mdx')
     {
         posts.map(post => (
             <li>
-                <a href={ post.frontmatter.url }>
+                <a href={ '/'+post.frontmatter.url.toLowerCase() }>
                     <img class="thumbnail" src={ post.frontmatter.image || '/orto.jpg' } alt={ post.frontmatter.title }/>
                 </a>
-                <a href={ post.frontmatter.url }>
+                <a href={ '/'+sanitizeSlug(post.frontmatter.url) }>
                     <h2>{ post.frontmatter.title }</h2>
                 </a>
             </li>

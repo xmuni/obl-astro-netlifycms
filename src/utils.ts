@@ -7,3 +7,7 @@ export function matchesPathname(path: string, pathname: string) {
         return pathname === path
     }
 }
+
+export function sanitizeSlug(slug: string) {
+    return slug.trim().replaceAll(' ','-').toLowerCase()
+}
